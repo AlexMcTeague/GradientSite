@@ -3,6 +3,7 @@ const lastColor = document.getElementById('lastColor');
 const message = document.getElementById('inputMessage');
 const result = document.getElementById('result');
 
+result.textContent = (message.value == '') ? message.placeholder : message.value;
 
 message.addEventListener('input', () => {
     result.textContent = message.value;
