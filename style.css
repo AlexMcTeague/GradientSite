@@ -1,0 +1,43 @@
+:root {
+  --color-picker-size: 100px; /* Affects square width and height */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+body {
+    background-color: #fff;
+}
+
+#message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    transform: translate(-50%, -50%);
+}
+
+input[type="text"] {
+    field-sizing: content;
+    min-width: 100px;
+}
+
+input[type="color"] {
+    position: fixed;
+    width: var(--color-picker-size);
+    height: var(--color-picker-size);
+}
+
+#firstColor {
+    top: calc(50% - 0.5 * var(--color-picker-size));
+    left: 15%;
+}
+
+#lastColor {
+    top: calc(50% - 0.5 * var(--color-picker-size));
+    right: 15%;
+}
