@@ -5,6 +5,9 @@ const result = document.getElementById('result');
 
 // Set the color of each character in the string to a gradient between the first and last colors
 const refreshGradient = () => {
+    resultText = result.textContent;
+    resultLength = resultText.length;
+
     // First convert the hex color values to RGB
     const firstR = parseInt(firstColor.value.substring(1, 3), 16);
     const firstG = parseInt(firstColor.value.substring(3, 5), 16);
@@ -15,22 +18,22 @@ const refreshGradient = () => {
     const lastB = parseInt(lastColor.value.substring(5, 7), 16);
 
     // Next get the difference between the colors, and divide it into steps based on the length of the string
-    const stepR = (lastR - firstR) / (result.textContent.length - 1);
-    const stepG = (lastG - firstG) / (result.textContent.length - 1);
-    const stepB = (lastB - firstB) / (result.textContent.length - 1);
+    const stepR = (lastR - firstR) / (resultLength - 1);
+    const stepG = (lastG - firstG) / (resultLength - 1);
+    const stepB = (lastB - firstB) / (resultLength - 1);
 
     // Now loop through each character in the string and set its color based on the step values
     // Could you do this much more gracefully and easily with CSS? Probably, but this is more fun
     let resultHTML = '';
-    resultHTML += `<span style="color: ${firstColor.value}">${result.textContent[0]}</span>`; // First character
-    if (result.textContent.length >= 2) { // Skip further logic if there's only one character
-        for (let i = 1; i < result.textContent.length - 1; i++) { // Loop through the middle characters
+    resultHTML += `<span style="color: ${firstColor.value}">${resultText[0]}</span>`; // First character
+    if (resultLength >= 2) { // Skip further logic if there's only one character
+        for (let i = 1; i < resultLength - 1; i++) { // Loop through the middle characters
             const newR = Math.round(firstR + stepR * i);
             const newG = Math.round(firstG + stepG * i);
             const newB = Math.round(firstB + stepB * i);
-            resultHTML += `<span style="color: rgb(${newR}, ${newG}, ${newB})">${result.textContent[i]}</span>`;
+            resultHTML += `<span style="color: rgb(${newR}, ${newG}, ${newB})">${resultText[i]}</span>`;
         }
-        resultHTML += `<span style="color: ${lastColor.value}">${result.textContent[result.textContent.length - 1]}</span>`; // Last character
+        resultHTML += `<span style="color: ${lastColor.value}">${resultText[resultLength - 1]}</span>`; // Last character
     }
 
     result.innerHTML = resultHTML;
